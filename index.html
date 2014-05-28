@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
 <head>
   <title>Waitstaff Calculator</title>
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-<body>
+<body ng-controller="MainCtrl">
   <div class="container">
 
     <div class="row">
@@ -22,21 +22,21 @@
 
           <form class="form-horizontal" role="form">
             <div class="form-group">
-              <label for="baseMealPrice" class="col-sm-6 control-label">Base Meal Price: $</label>
+              <label for="price" class="col-sm-6 control-label">Base Meal Price: $</label>
               <div class="col-sm-3">
-                <input type="number" class="form-control" id="baseMealPrice">
+                <input type="number" class="form-control" id="price" ng-model="details.price" required>
               </div>
             </div>
             <div class="form-group">
               <label for="taxRate" class="col-sm-6 control-label">Tax Rate: %</label>
               <div class="col-sm-3">
-                <input type="number" class="form-control" id="taxRate">
+                <input type="number" class="form-control" id="taxRate" ng-model="details.taxRate" required>
               </div>
             </div>
             <div class="form-group">
               <label for="tipPercentage" class="col-sm-6 control-label">Tip Percentage: %</label>
               <div class="col-sm-3">
-                <input type="number" class="form-control" id="tipPercentage">
+                <input type="number" class="form-control" id="tipPercentage" ng-model="details.tipPercentage" required>
               </div>
             </div>
             <div class="form-group">
@@ -54,9 +54,9 @@
           <h2>Customer Charges</h2>
           <div class="row">
             <div class="col-sm-8 col-lg-offset-4">
-              <p>Subotal</p>
-              <p>Tip</p>
-              <p>Total</p>
+              <p>Subtotal: {{ computeSubtotal(details.price, details.taxRate) | currency }}</p>
+              <p>Tip: {{ computeTip(details.price, details.tipPercentage) | currency }}</p>
+              <p><strong>Total: {{ computeTotal(details.price, details.taxRate, details.tipPercentage) }}</strong></p>
             </div>
           </div>
 
