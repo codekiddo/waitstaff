@@ -20,7 +20,7 @@
         <div class="well">
           <h2>Enter the Meal Details</h2>
 
-          <form class="form-horizontal" role="form">
+          <form class="form-horizontal" role="form" name="detailsForm">
             <div class="form-group">
               <label for="price" class="col-sm-6 control-label">Base Meal Price: $</label>
               <div class="col-sm-3">
@@ -41,8 +41,8 @@
             </div>
             <div class="form-group">
               <div class="col-sm-offset-4 col-sm-8">
-                <button type="submit" class="btn btn-default">Submit</button>
-                <button type="submit" class="btn btn-sm btn-danger">Cancel</button>
+                <button type="submit" ng-click="submit()" class="btn btn-default">Submit</button>
+                <button ng-click="resetInput()" class="btn btn-sm btn-danger">Cancel</button>
               </div>
             </div>
           </form>
@@ -56,7 +56,7 @@
             <div class="col-sm-8 col-lg-offset-4">
               <p>Subtotal: {{ computeSubtotal(details.price, details.taxRate) | currency }}</p>
               <p>Tip: {{ computeTip(details.price, details.tipPercentage) | currency }}</p>
-              <p><strong>Total: {{ computeTotal(details.price, details.taxRate, details.tipPercentage) }}</strong></p>
+              <p><strong>Total: {{ computeTotal(details.price, details.taxRate, details.tipPercentage) | currency }}</strong></p>
             </div>
           </div>
 
@@ -65,15 +65,15 @@
           <h2>My Earnings Info</h2>
           <div class="row">
             <div class="col-sm-8 col-lg-offset-4">
-              <p>Tip Total:</p>
-              <p>Meal Count: </p>
-              <p>Average Tip Per Meal: </p>
+              <p>Tip Total: {{ tiptotal | currency }}</p>
+              <p>Meal Count: {{ mealcount }}</p>
+              <p>Average Tip Per Meal: {{ tipAverage() | currency }}</p>
             </div>
           </div>
         </div>
       </div>
 
-      <button type="submit" class="btn btn-danger btn-sm pull-right">Reset</button>
+      <button ng-click="reset()" class="btn btn-danger btn-sm pull-right">Reset</button>
 
     </div>
   </div>
