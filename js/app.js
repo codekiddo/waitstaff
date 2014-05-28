@@ -58,7 +58,7 @@ angular.module('myApp', [])
       $scope.mealcount = "";
       $scope.tip = 0;
       $scope.price = 0;
-      $scope.resetInput();
+      $scope.details = defaultForm;
     }
 
     $scope.resetInput = function() {
